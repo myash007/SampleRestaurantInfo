@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start":"node app.js"
   },
-  "author": "",
+  "author": "Vrushank Amin, Yash Mehta",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
