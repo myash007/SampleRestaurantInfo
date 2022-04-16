@@ -100,6 +100,10 @@ app.get("/api/logout", function(req, res) {
 
 /**End of section**/
 
+app.get("/",function(req,res){
+    res.redirect('/api/login');
+});
+
 // insert restaurant 
 app.post('/api/restaurants',authAdmin, function(req, res) {
     var ioid = JSON.parse(req.body.id);
