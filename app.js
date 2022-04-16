@@ -171,7 +171,7 @@ app.post('/api/paginationformHandlebar', authUser, [
     if (!validateErrors.isEmpty()) {
         const errorAlert = validateErrors.array();
         // console.log(errorAlert);
-        return res.status(400).render("paginationDisplay", { errorMessage: errorAlert });
+        return res.status(400).render("pages/paginationDisplay", { errorMessage: errorAlert });
     }
     let page = req.body.page;
     let perPage = req.body.perPage;
