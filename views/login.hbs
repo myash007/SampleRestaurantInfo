@@ -1,0 +1,37 @@
+<div id="content">
+    <br>
+    <h1>{{title}}</h1>
+    {{!-- </br>
+    {{#if errorMessage}}
+
+    {{#each errorMessage as |error|}}
+    <div class="d-flex justify-content-center">
+        <div class="alert w-50 text-center  alert-danger" role="alert">
+            <p> {{error.msg}}</p>
+        </div>
+    </div>
+    {{/each}}
+    {{/if}} --}}
+    </br>
+    <div class="col-md-6 col-md-offset-3  formclass">
+        <form action="/api/login" method="post">
+            <div class="form-group row">
+                <label for="username" class="col-sm-4  col-form-label">Username:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" Id="username" name="username" placeholder="Enter Username">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-4 col-form-label">Password:</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" Id="password" name="password" placeholder="Enter Password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col text-center">
+                    <button type="submit" class="submit-btn">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
