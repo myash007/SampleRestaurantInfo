@@ -27,16 +27,7 @@ const {isLoggedIn} = require('./middleware/authentication');
 var db = new RestaurantDBClass();
 app.engine('.hbs', exphbs.engine({
     extname: '.hbs',
-    defaultLayout: 'main',
-    helpers:{
-        getGrades:function(data){
-            if(data==null){
-                return ""
-            }else{
-                return data;
-            }
-        }
-    }
+    defaultLayout: 'main'
 }));
 app.set("view engine", ".hbs");
 
@@ -52,10 +43,12 @@ if (isConnected) {
 
 /****Authentication, Authorization and protecting routes****/
 
+//if user is not logged in redirect user to login page
 app.get("/api/login",isLoggedIn, function(req, res) {
-    res.render("login", { title: 'Login Page' });
+    res.render("pages/login", { title: 'Login Page' });
 });
 
+//authenticate user
 app.post("/api/login",isLoggedIn, function(req,res){
 
     var username = req.body.username;
@@ -75,10 +68,14 @@ app.post("/api/login",isLoggedIn, function(req,res){
                 const id = userData._id;
                 const role = userData.role;
                 
+                //authenticate user by verifying encrypted password using bcrypt 
                 bcrypt.compare(password,pwd).then((checkPassword)=>{
                     if(checkPassword){
                         // console.log("Secret_key: " + key);
+
+                        //generate token using id, role and secret key
                         const token = jwt.sign({ id,role } , key);
+
                         // console.log("JWT: " + token);
                         res.cookie('jwt',token,{httpOnly:true});
 
@@ -92,6 +89,7 @@ app.post("/api/login",isLoggedIn, function(req,res){
     });
 })
 
+//logout user and unset cookie 
 app.get("/api/logout", function(req, res) {
     res.cookie('jwt','',{maxAge:1});
     res.redirect('/api/login');
@@ -160,7 +158,7 @@ app.get('/api/restaurants',authUser, [
 
 //route to display form using handlebar
 app.get("/api/paginationformHandlebar", authUser, function(req, res) {
-    res.render("paginationDisplay", { title: 'Display Pagination using Handlebar' });
+    res.render("pages/paginationDisplay", { title: 'Display Pagination using Handlebar' });
 });
 
 
@@ -198,7 +196,7 @@ app.post('/api/paginationformHandlebar', authUser, [
                 })
             }
             console.log(JsonResData.restaurants);
-            res.render("displayData", { data: JsonResData.restaurants });
+            res.render("pages/displayData", { data: JsonResData.restaurants });
         } else {
             res.status(400).send("Details are not found as per the pagination request.")
         }
@@ -246,4 +244,8 @@ app.delete('/api/restaurants/:id',authAdmin, function(req, res) {
         }
     });
     res.status(200).send('Restaurant with requested id : ' + uid + ' has been deleted.');
+});
+
+app.get('*',function(req,res){
+    res.render('partials/error',{message:'Error:404 Page not found'})
 });
