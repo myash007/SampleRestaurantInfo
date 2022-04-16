@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 var key = process.env.SECRET_KEY;
 
+//authorize admin to handle all routes 
 const authAdmin = (req,res,next) => {
     const token = req.cookies.jwt;
-    if(token){
+    if(token){ //verify token and check role if user role is admin then allow access for all routes 
         jwt.verify(token, key , (err,decodedToken) => {
             if(err){
                 console.log(err.message);
@@ -12,11 +13,11 @@ const authAdmin = (req,res,next) => {
             }
             else{
                 // console.log("id: " + decodedToken.id + ",role: " + decodedToken.role);
-                const role = decodedToken.role;
+                const role = decodedToken.role; //get decoded token and get role to check the user role
                 if(role == "admin"){
                     next();
                 }
-                else{
+                else{ //if user role is user then show access denied message for insert, update and delete operations
                     res.status(400).send("Access denied you cannot access this site!");
                 }
             }
@@ -26,6 +27,7 @@ const authAdmin = (req,res,next) => {
     }
 }
 
+//authorize user to access only view restaurant details and deny the access for insert,update and delete operations
 const authUser = (req,res,next) => {
     const token = req.cookies.jwt;
     if(token){
@@ -37,7 +39,7 @@ const authUser = (req,res,next) => {
             else{
                 // console.log("id: " + decodedToken.id + ",role: " + decodedToken.role);
                 const role = decodedToken.role;
-                if(role == "user" || role == "admin") {
+                if(role == "user" || role == "admin") { 
                     next();
                 }
             }
@@ -47,5 +49,6 @@ const authUser = (req,res,next) => {
     }
 }
 
+//exporting middlewares
 module.exports = { authAdmin,authUser };
 
