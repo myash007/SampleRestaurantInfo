@@ -240,7 +240,7 @@ app.delete('/api/restaurants/:id',authAdmin, function(req, res) {
         if (resData) {
             console.log(resData);
         } else {
-            res.status(400).send("Cannot delete the record.");
+            res.status(400).send("Record does not exist, cannot delete the record.");
         }
     });
     res.status(200).send('Restaurant with requested id : ' + uid + ' has been deleted.');
