@@ -1,3 +1,16 @@
+/******************************************************************************
+***
+* ITE5315 – Project
+* I declare that this assignment is my own work in accordance with Humber Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Group member Name: Vrushank Amin , Yash Mehta Student IDs: N01452389, N01452496 Date:April 17th, 2022
+*
+*
+******************************************************************************
+**/
+
 var express = require('express');
 const mongoose = require("mongoose");
 var app = express();
