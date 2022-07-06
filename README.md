@@ -12,3 +12,8 @@
 
 ### Live Link : https://aqueous-falls-11504.herokuapp.com/api/login
 
+#credential for testing:
+
+username : yash
+password : yash1234
+
