@@ -1,6 +1,6 @@
 
 # Sample RestaurantInfo
-## Author: Yash Mehta , Vrushank Amin 
+## Author: Yash Mehta
 
 ### Description:
 
