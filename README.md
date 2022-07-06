@@ -1,5 +1,5 @@
 
-# SampleRestaurantInfo
+# Sample RestaurantInfo
 ## Author: Yash Mehta , Vrushank Amin 
 
 ### Description:
@@ -12,7 +12,7 @@
 
 ### Live Link : https://aqueous-falls-11504.herokuapp.com/api/login
 
-#credential for testing:
+# credential for testing:
 
 username : yash
 password : yash1234
