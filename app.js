@@ -48,6 +48,7 @@ app.set("view engine", ".hbs");
 var isConnected = db.initialize(database.url);
 if (isConnected) {
     console.log("Successfully connected.");
+    console.log(database.url);
     app.listen(port);
     console.log("App listening on port : " + port);
 } else {
